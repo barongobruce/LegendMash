@@ -379,7 +379,7 @@ section { position: relative; }
 }
 
 .hero-title {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif !important;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
   font-weight: 700 !important; /* Makes "Every Moment." bold */
   font-size: clamp(2.4rem, 6vw, 4.6rem);
   color: var(--color-ivory);
@@ -388,7 +388,7 @@ section { position: relative; }
 }
 
 .script-accent {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif !important;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
   font-weight: 600 !important; /* Makes "Captured Forever." bold */
   font-size: 1.3em;
   color: var(--color-gold-light);
@@ -815,53 +815,53 @@ section { position: relative; }
   }
 }
 
-/* ========== FORCE COMIC SANS EVERYWHERE ========== */
+/* ========== FORCE COMIC Neue EVERYWHERE ========== */
 *, *::before, *::after {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif !important;
+ font-family: 'Comic Neue', 'Comic Sans MS', cursive;
 }
 
 body, html {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif !important;
+ font-family: 'Comic Neue', 'Comic Sans MS', cursive;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif !important;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
   font-weight: 700 !important;
 }
 
 p, span, a, button, label, input, textarea, select {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif !important;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
 }
 
 /* Specifically target the hero text */
 .hero-title, .script-accent {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif !important;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
   font-weight: 700 !important;
 }
 
 /* Target all navigation and menu items */
 .nav-link, .logo-text, .logo-mark {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif !important;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
 }
 
 /* Target all sections */
 .section-head h2, .eyebrow, .section-sub {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif !important;
+ font-family: 'Comic Neue', 'Comic Sans MS', cursive;
 }
 
 /* Target buttons */
 .btn, .btn-title, .btn-sub {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif !important;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
 }
 
 /* Target services, portfolio, testimonials */
 .service-overlay h3, .testimonial-author cite, .stat-number, .stat-label {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif !important;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
 }
 
 /* Target footer */
 .footer-links a, .footer-contact p, .footer-social h4 {
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif !important;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
 }
 
 /* Fix clashing buttons on mobile */
@@ -1279,7 +1279,7 @@ p, span, a, button, label, input, textarea, select {
 /* Eyebrow Text */
 .about-eyebrow {
   display: inline-block;
-  font-family: var(--font-sans);
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
   font-size: 0.75rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -1290,7 +1290,7 @@ p, span, a, button, label, input, textarea, select {
 
 /* Main Heading */
 .about-heading {
-  font-family: var(--font-serif);
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
   font-size: clamp(2.2rem, 4vw, 3.5rem);
   color: var(--color-ivory);
   line-height: 1.15;
@@ -1305,7 +1305,7 @@ p, span, a, button, label, input, textarea, select {
 
 /* Description */
 .about-description {
-  font-family: var(--font-sans);
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
   font-size: clamp(0.95rem, 1.3vw, 1.1rem);
   color: rgba(246, 240, 228, 0.75);
   line-height: 1.8;
@@ -1429,7 +1429,7 @@ p, span, a, button, label, input, textarea, select {
 }
 
 .mission-title {
-  font-family: var(--font-serif);
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
   font-size: 1.1rem;
   color: var(--color-ivory);
   margin-bottom: 0.5rem;
