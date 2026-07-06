@@ -147,7 +147,7 @@
     // SWAP THE IMAGE SOURCE ON MOBILE
     if (isMobile) {
       // 👇 CHANGE 'your-image-name.png' TO YOUR ACTUAL FILENAME 👇
-      heroImage.src = 'images/hero2.png'; 
+      heroImage.src = 'images/hero3.png'; 
       heroImage.style.objectPosition = 'center center';
     }
 
@@ -405,5 +405,219 @@
       }
     };
   }
+
+/* Video Modal for Service Cards */
+function initVideoModal() {
+  var videoCards = document.querySelectorAll('.service-card[data-video]');
+  
+  videoCards.forEach(function(card) {
+    card.addEventListener('click', function() {
+      var videoSrc = this.getAttribute('data-video');
+      createVideoModal(videoSrc);
+    });
+  });
+  
+  function createVideoModal(videoSrc) {
+    // Create modal overlay
+    var modal = document.createElement('div');
+    modal.className = 'video-modal';
+    modal.innerHTML = `
+      <div class="video-modal-content">
+        <button class="video-modal-close" aria-label="Close video">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+        <video controls autoplay>
+          <source src="${videoSrc}" type="video/mp4">
+        </video>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Close on X button or clicking outside
+    setTimeout(function() {
+      modal.classList.add('is-open');
+      var closeBtn = modal.querySelector('.video-modal-close');
+      closeBtn.addEventListener('click', function() {
+        closeModal();
+      });
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+      });
+    }, 10);
+    
+    function closeModal() {
+      modal.classList.remove('is-open');
+      setTimeout(function() {
+        modal.remove();
+      }, 300);
+    }
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function closeOnEscape(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+        document.removeEventListener('keydown', closeOnEscape);
+      }
+    });
+  }
+}
+
+// Initialize video modal
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initVideoModal);
+} else {
+  initVideoModal();
+}
+
+  /* ---------- Portfolio Video Modal ---------- */
+  function initPortfolioVideos() {
+    var videoItems = document.querySelectorAll('.portfolio-item[data-video]');
+    
+    videoItems.forEach(function(item) {
+      item.addEventListener('click', function() {
+        var videoSrc = this.getAttribute('data-video');
+        openVideoModal(videoSrc);
+      });
+    });
+    
+    function openVideoModal(videoSrc) {
+      var modal = document.createElement('div');
+      modal.className = 'video-modal';
+      modal.innerHTML = `
+        <div class="video-modal-content">
+          <button class="video-modal-close" aria-label="Close video">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+          <video controls autoplay>
+            <source src="${videoSrc}" type="video/mp4">
+            <source src="${videoSrc}" type="video/quicktime">
+          </video>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      setTimeout(function() { modal.classList.add('is-open'); }, 10);
+      
+      var closeBtn = modal.querySelector('.video-modal-close');
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+      
+      function closeModal() {
+        modal.classList.remove('is-open');
+        setTimeout(function() { modal.remove(); }, 300);
+      }
+      
+      document.addEventListener('keydown', function closeOnEscape(e) {
+        if (e.key === 'Escape') { closeModal(); document.removeEventListener('keydown', closeOnEscape); }
+      });
+    }
+  }
+  
+  // Initialize video modal
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortfolioVideos);
+  } else {
+    initPortfolioVideos();
+  }
+
+/* ============================================================
+   ABOUT SECTION - REVEAL ANIMATIONS
+   ============================================================ */
+
+function initAboutReveal() {
+  var revealElements = document.querySelectorAll('.about-section .reveal-text');
+  
+  if (!revealElements.length) return;
+  
+  var observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -80px 0px'
+  };
+  
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  revealElements.forEach(function(el) {
+    observer.observe(el);
+  });
+}
+
+// Initialize on page load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAboutReveal);
+} else {
+  initAboutReveal();
+}
+
+/* WhatsApp Booking Form */
+function initWhatsAppBooking() {
+  var form = document.getElementById('bookingForm');
+  var feedback = document.getElementById('formFeedback');
+  
+  if (!form || !feedback) return;
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (!form.checkValidity()) {
+      feedback.textContent = 'Please fill in all required fields.';
+      feedback.style.color = '#e3c778';
+      form.reportValidity();
+      return;
+    }
+    
+    // Get form values
+    var name = form.fullName.value.trim();
+    var email = form.email.value.trim();
+    var phone = form.phone.value.trim();
+    var service = form.service.options[form.service.selectedIndex].text;
+    var eventDate = form.eventDate.value;
+    var eventTime = form.eventTime.value;
+    var message = form.message.value.trim();
+    
+    // Build WhatsApp message
+    var whatsappMessage = 
+      '*NEW BOOKING REQUEST*%0A%0A' +
+      '*Name:* ' + encodeURIComponent(name) + '%0A' +
+      '*Email:* ' + encodeURIComponent(email) + '%0A' +
+      '*Phone:* ' + encodeURIComponent(phone) + '%0A' +
+      '*Service:* ' + encodeURIComponent(service) + '%0A' +
+      '*Event Date:* ' + encodeURIComponent(eventDate) + '%0A' +
+      '*Event Time:* ' + encodeURIComponent(eventTime) + '%0A' +
+      '*Message:* ' + encodeURIComponent(message || 'No additional message') + '%0A%0A' +
+      'Sent from Legend Mash Studios website';
+    
+    // Your WhatsApp number (replace with actual number)
+    var whatsappNumber = '254790817100'; // Format: country code + number (no + or spaces)
+    
+    // Open WhatsApp
+    var whatsappURL = 'https://wa.me/' + whatsappNumber + '?text=' + whatsappMessage;
+    window.open(whatsappURL, '_blank');
+    
+    // Show success message
+    feedback.textContent = 'Opening WhatsApp...';
+    feedback.style.color = '#c8a04a';
+    
+    // Reset form
+    form.reset();
+  });
+}
+
+// Initialize
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initWhatsAppBooking);
+} else {
+  initWhatsAppBooking();
+}
 
 })();
