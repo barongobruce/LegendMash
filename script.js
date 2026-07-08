@@ -338,32 +338,53 @@
     counters.forEach(function (el) { observer.observe(el); });
   }
 
-  /* ---------- Booking form ---------- */
+    /* ---------- Booking Form (WhatsApp Integration) ---------- */
   function initBookingForm() {
     var form = document.getElementById('bookingForm');
     var feedback = document.getElementById('formFeedback');
     if (!form || !feedback) return;
 
     form.addEventListener('submit', function (e) {
-      e.preventDefault();
+      e.preventDefault(); // Stop page from reloading
 
+      // Check if form is valid
       if (!form.checkValidity()) {
-        feedback.textContent = 'Please fill in all required fields before submitting.';
+        feedback.textContent = 'Please fill in all required fields.';
         feedback.style.color = '#e3c778';
         form.reportValidity();
         return;
       }
 
+      // 1. Gather the data from the form
       var name = form.fullName.value.trim();
+      var email = form.email.value.trim();
+      var phone = form.phone.value.trim();
       var service = form.service.options[form.service.selectedIndex].text;
       var date = form.eventDate.value;
+      var time = form.eventTime.value;
+      var message = form.message.value.trim();
 
-      feedback.textContent =
-        'Thank you, ' + name + '! Your request for ' + service +
-        (date ? ' on ' + date : '') +
-        ' has been received. We will reach out on WhatsApp shortly.';
+      // 2. Build the WhatsApp Message
+      // Note: %0A creates a new line in WhatsApp
+      var waText = "Hello Legend Mash! I would like to make a booking.%0A%0A" +
+                   "*Name:* " + name + "%0A" +
+                   "*Email:* " + email + "%0A" +
+                   "*Phone:* " + phone + "%0A" +
+                   "*Service:* " + service + "%0A" +
+                   "*Date:* " + date + "%0A" +
+                   "*Time:* " + time + "%0A" +
+                   "*Message:* " + (message || "No additional message");
+
+      // 3. Your WhatsApp Number (Format: Country Code + Number, no + sign)
+      var waNumber = "254790817100"; 
+
+      // 4. Create the link and open it
+      var waUrl = "https://wa.me/" + waNumber + "?text=" + waText;
+      window.open(waUrl, '_blank');
+
+      // 5. Show success message and reset form
+      feedback.textContent = 'Opening WhatsApp... Please send the message there!';
       feedback.style.color = '#c8a04a';
-
       form.reset();
     });
   }

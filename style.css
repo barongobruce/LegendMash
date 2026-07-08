@@ -1747,3 +1747,26 @@ p, span, a, button, label, input, textarea, select {
     margin-top: auto !important;
   }
 }
+
+/* WhatsApp Floating Button Styles */
+.whatsapp-float {
+  position: fixed;
+  right: 1.6rem;
+  bottom: 5.5rem; /* Sits above the back-to-top arrow */
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366; /* Official WhatsApp Green */
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1); /* Grows slightly on hover */
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
